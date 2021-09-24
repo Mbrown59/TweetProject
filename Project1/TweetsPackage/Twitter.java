@@ -28,45 +28,32 @@ public class Twitter
 		try {
 			FileReader fr = new FileReader(fileName);
 			lineReader = new BufferedReader(fr);
-			String line;
-			while ((line = lineReader.readLine())!=null) {
-				String polarity = lineReader.readLine();
-				String id = lineReader.readLine();
-				String user = lineReader.readLine();
-				String tweet = lineReader.readLine();
-				if (polarity.equals("0")) {
-					new Tweet(polarity, id, tweet, user);
-				}
-				else {
-					System.err.println("error: unnknown person type");
-				}			}
+			String line = null;
+			while ((line = lineReader.readLine())!=null) 
+			{
+				//System.out.println(line);
+				
+				String[] fullTweet = line.split(",");
+				String polarity = fullTweet[fullTweet.length - 4];
+				String id = fullTweet[fullTweet.length - 3];
+				String user = fullTweet[fullTweet.length - 2];
+				String tweet = fullTweet[fullTweet.length - 1];
+				
+					System.out.println(tweet);
+					
+				
+				//double positiveTweet = Double.parseDouble(fullTweet[4]);
+				//double negativeTweet = Double.parseDouble(fullTweet[0]);
+			}
+			
+			
+				//int polarity = lineReader.read();
+				//String id = lineReader.readLine();
+				//String user = lineReader.readLine();
+				//String tweet = lineReader.readLine();		
 		} catch (Exception e) {
 			System.err.println("there was a problem with the file reader, try different read type.");
-			try {
-				lineReader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(fileName.substring(1))));
-				String line = null;
-				while ((line = lineReader.readLine())!=null) {
-					String polarity = lineReader.readLine();
-					String user = lineReader.readLine();
-					String name = lineReader.readLine();
-					String id = lineReader.readLine();
-					if (line.equals("0")) {
-						String tweet = lineReader.readLine();
-						new Tweet(polarity, id, tweet, user);
-					}
-					else {
-						System.err.println("error: unnknown person type");
-					}				}
-			} catch (Exception e2) {
-				System.err.println("there was a problem with the file reader, try again.  either no such file or format error");
-			} finally {
-				if (lineReader != null)
-					try {
-						lineReader.close();
-					} catch (IOException e2) {
-						System.err.println("could not close BufferedReader");
-					}
-			}			
+			
 		} finally {
 			if (lineReader != null)
 				try {
