@@ -9,43 +9,54 @@ import java.io.InputStreamReader;
 
 public class Twitter
 {
-	
+
 	private String fileName;
-	private String className;
 	private Tweet newTweet;
-	
+
 	public Twitter()
 	{
 		fileName = null;
-		className = "a class";
 	}
-	
-	public Twitter(String fn, String cn)
+
+	public Twitter(String fn)
 	{
 		fileName = fn;
-		className = cn;
-		readFile();
-		
 	}
-	
-	private void readFile () {
+
+	public void readFile () {
 		BufferedReader lineReader = null;
 		try {
 			FileReader fr = new FileReader(fileName);
 			lineReader = new BufferedReader(fr);
-			String line = null;
+			String line;
 			while ((line = lineReader.readLine())!=null) {
+				String polarity = lineReader.readLine();
+				String id = lineReader.readLine();
+				String user = lineReader.readLine();
 				String tweet = lineReader.readLine();
-					}
+				if (polarity.equals("0")) {
+					new Tweet(polarity, id, tweet, user);
+				}
+				else {
+					System.err.println("error: unnknown person type");
+				}			}
 		} catch (Exception e) {
 			System.err.println("there was a problem with the file reader, try different read type.");
 			try {
 				lineReader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(fileName.substring(1))));
 				String line = null;
 				while ((line = lineReader.readLine())!=null) {
-					String tweet = lineReader.readLine();
+					String polarity = lineReader.readLine();
+					String user = lineReader.readLine();
+					String name = lineReader.readLine();
 					String id = lineReader.readLine();
+					if (line.equals("0")) {
+						String tweet = lineReader.readLine();
+						new Tweet(polarity, id, tweet, user);
 					}
+					else {
+						System.err.println("error: unnknown person type");
+					}				}
 			} catch (Exception e2) {
 				System.err.println("there was a problem with the file reader, try again.  either no such file or format error");
 			} finally {
@@ -65,14 +76,13 @@ public class Twitter
 				}
 		}
 	} // end of readFile method	
-	
 	private void writeFile(String fn)
 	{
 		try
 		{
 			FileWriter fw = new FileWriter(fn);
 			BufferedWriter myOutfile = new BufferedWriter(fw);
-			
+
 			Tweet tweet = newTweet;
 			myOutfile.write(tweet.getId() + ", " + tweet.getUser() + ", " + tweet.getTweet());
 			myOutfile.flush();
@@ -84,6 +94,6 @@ public class Twitter
 			System.err.println("Didn't save to" + fn);
 		}
 	}
-	
+
 
 }

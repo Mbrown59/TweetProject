@@ -6,9 +6,12 @@ public class Main {
 	{
 		System.out.println("hello");
 		//Tweet t1 = new Tweet();
-		Twitter allTweets = new Twitter("allTweets" , " ./TweetsPackage/Tweets.txt");
+		Twitter t1 = new Twitter("./TweetsPackage/Tweets.txt");
 		
-		System.out.println(allTweets);
+		t1.readFile();
+		
+		System.out.println(t1);
+	
 	}
 
 }
