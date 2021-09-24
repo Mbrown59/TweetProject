@@ -5,13 +5,14 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.*;
+
 
 public class Twitter
 {
-
+	ArrayList<Tweet> collection = new ArrayList<>(); 
 	private String fileName;
-	private Tweet newTweet;
+	//private Tweet newTweet;
 
 	public Twitter()
 	{
@@ -21,6 +22,17 @@ public class Twitter
 	public Twitter(String fn)
 	{
 		fileName = fn;
+		collection = new ArrayList<>();
+
+	}
+	
+	public String retrieveById(String id)
+	{
+		Scanner scan = new Scanner(System.in);
+		System.out.println("What is the id of tweet you would like to retrieve?")
+		String i = scan.nextLine();
+		
+		
 	}
 
 	public void readFile () {
@@ -34,23 +46,34 @@ public class Twitter
 				//System.out.println(line);
 				
 				String[] fullTweet = line.split(",");
+				
 				String polarity = fullTweet[fullTweet.length - 4];
 				String id = fullTweet[fullTweet.length - 3];
 				String user = fullTweet[fullTweet.length - 2];
 				String tweet = fullTweet[fullTweet.length - 1];
 				
-					System.out.println(tweet);
-					
+				Tweet T = new Tweet(polarity, id, user, tweet);
+				collection.add(T);
+				
+				//System.out.println(polarity);
+				
+				T.setPolarity(polarity);
+				T.setId(id);
+				T.setUser(user);
+				T.setTweet(tweet);
+				
+				
+				
+				
+				
+
+
+
+
 				
 				//double positiveTweet = Double.parseDouble(fullTweet[4]);
 				//double negativeTweet = Double.parseDouble(fullTweet[0]);
-			}
-			
-			
-				//int polarity = lineReader.read();
-				//String id = lineReader.readLine();
-				//String user = lineReader.readLine();
-				//String tweet = lineReader.readLine();		
+			}	
 		} catch (Exception e) {
 			System.err.println("there was a problem with the file reader, try different read type.");
 			
@@ -62,6 +85,8 @@ public class Twitter
 					System.err.println("could not close BufferedReader");
 				}
 		}
+		System.out.println(collection);
+
 	} // end of readFile method	
 	private void writeFile(String fn)
 	{
@@ -81,6 +106,7 @@ public class Twitter
 			System.err.println("Didn't save to" + fn);
 		}
 	}
+
 
 
 }

@@ -3,23 +3,23 @@ package TweetsPackage;
 public class Tweet {
 
 	private String polarity;
-	//private String id;
-	//private String tweet;
-	//private String user;
+	private String id;
+	private String tweet;
+	private String user;
 	
 	public Tweet()
 	{
-		//id = "not set";
-		//tweet = "not set";
-		//user = "not set";
+		id = "not set";
+		tweet = "not set";
+		user = "not set";
 		polarity = "not set";
 	}
 	
-	public Tweet(String p)
+	public Tweet(String p, String i, String t, String u)
 	{
-		//id = i;
-		//tweet = t;
-		//user = u;
+		id = i;
+		tweet = t;
+		user = u;
 		polarity = p;
 	}
 	
@@ -34,7 +34,7 @@ public class Tweet {
 	}
 	
 
-	/*public String getId()
+	public String getId()
 	{
 		return id;
 	}
@@ -67,6 +67,6 @@ public class Tweet {
 	public String toString()
 	{
 		return tweet;
-	}*/
+	}
 
 }
