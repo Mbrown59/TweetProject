@@ -9,6 +9,7 @@ public class Main {
 		Twitter t1 = new Twitter("./TweetsPackage/Tweets.txt");
 		
 		t1.readFile();
+		t1.retrieveById();
 		//Tweet T2 = new Tweet();
 		
 		//System.out.println(T2);

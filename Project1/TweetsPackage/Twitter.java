@@ -12,7 +12,7 @@ public class Twitter
 {
 	ArrayList<Tweet> collection = new ArrayList<>(); 
 	private String fileName;
-	//private Tweet newTweet;
+	private Tweet T;
 
 	public Twitter()
 	{
@@ -23,14 +23,25 @@ public class Twitter
 	{
 		fileName = fn;
 		collection = new ArrayList<>();
+		T = new Tweet();
 
 	}
 	
-	public String retrieveById(String id)
+	public void retrieveById()
 	{
 		Scanner scan = new Scanner(System.in);
-		System.out.println("What is the id of tweet you would like to retrieve?")
+		System.out.println("What is the id of tweet you would like to retrieve?");
 		String i = scan.nextLine();
+		//System.out.println(i);
+		Iterator iterator = collection.iterator();
+		
+		System.out.println(collection);
+		
+		//while(iterator.hasNext())
+		{
+			//System.out.println(collection);
+		}
+		
 		
 		
 	}
@@ -52,15 +63,19 @@ public class Twitter
 				String user = fullTweet[fullTweet.length - 2];
 				String tweet = fullTweet[fullTweet.length - 1];
 				
-				Tweet T = new Tweet(polarity, id, user, tweet);
-				collection.add(T);
+				T.setId(id);
+				T.setPolarity(polarity);
+				T.setTweet(tweet);
+				T.setUser(user);
+	
+				Tweet x = new Tweet(T.getPolarity(), T.getId(), T.getUser(), T.getTweet());
+				collection.add(x);
 				
 				//System.out.println(polarity);
 				
-				T.setPolarity(polarity);
-				T.setId(id);
-				T.setUser(user);
-				T.setTweet(tweet);
+				
+				
+				
 				
 				
 				
@@ -85,7 +100,7 @@ public class Twitter
 					System.err.println("could not close BufferedReader");
 				}
 		}
-		System.out.println(collection);
+		//System.out.println(collection);
 
 	} // end of readFile method	
 	private void writeFile(String fn)
