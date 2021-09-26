@@ -64,10 +64,9 @@ public class Twitter
 				if(T.getUser().equalsIgnoreCase(U))
 				{
 					map1.put(T.getUser(), T.getId());
+					System.out.println("\t" + map1);
 				}
-			}
-			System.out.println("Map Elements");
-			System.out.println("\t" + map1);
+			}			
 		}
 		
 	}
