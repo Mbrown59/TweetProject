@@ -12,11 +12,14 @@ public class Main {
 		t1.retrieveTweetById();
 		t1.retrieveAllIds();
 		t1.retrieveIdsByUser();
-		//Tweet T2 = new Tweet();
 		
-		//System.out.println(T2);
+		//t1.writeFile("./TweetsPackage/dataWriteTest.txt");
+		//t1.readFile();
+		Twitter testWrite = new Twitter("./Tweetspackage/dataWriteTest.txt");
+		testWrite.doWrite("./TweetsPackage/dataWriteTest.txt");
+		//System.out.println(testWrite);
+	
 		
-		//System.out.println(t1);
 	
 	}
 

@@ -14,16 +14,19 @@ public class Twitter
 	Map<String, String> map = new HashMap<String, String>();
 	Map<String, String> map1 = new HashMap<String, String>();
 	private String fileName;
+	//private String className;
 	private Tweet T;
 
 	public Twitter()
 	{
 		fileName = null;
+		//className = null;
 	}
 
 	public Twitter(String fn)
 	{
 		fileName = fn;
+		//className = cn;
 		collection = new ArrayList<>();
 		map = new HashMap<String, String>();
 		map1 = new HashMap<String, String>();
@@ -66,7 +69,7 @@ public class Twitter
 					map1.put(T.getUser(), T.getId());
 					System.out.println("\t" + map1);
 				}
-			}			
+			}System.out.println("\t" + map1);			
 		}
 		
 	}
@@ -108,7 +111,7 @@ public class Twitter
 				String user = fullTweet[fullTweet.length - 2];
 				String tweet = fullTweet[fullTweet.length - 1];
 				
-				Tweet T = new Tweet();
+				//Tweet T = new Tweet();
 
 				T.setPolarity(polarity);
 				T.setId(id);
@@ -131,16 +134,35 @@ public class Twitter
 		}
 		//System.out.println(collection);
 
-	} // end of readFile method	
-	private void writeFile(String fn)
+	} // end of readFile method
+	
+	public void writeFile () {
+		// overloaded method: this calls doWrite with file used to read data
+		// use this for saving data between runs
+		doWrite(fileName);
+	} // end of writeFile method
+
+	public void writeFile(String altFileName) {
+		// overloaded method: this calls doWrite with different file name 
+		// use this for testing write
+		doWrite(altFileName);		
+	}// end of writeFile method
+	
+	public void doWrite(String fn)
 	{
 		try
 		{
 			FileWriter fw = new FileWriter(fn);
 			BufferedWriter myOutfile = new BufferedWriter(fw);
-
-			Tweet tweet = newTweet;
-			myOutfile.write(tweet.getId() + ", " + tweet.getUser() + ", " + tweet.getTweet());
+			//myOutfile.write("It works");
+			//for(Tweet T : collection)
+			{
+				//System.out.println("it works");
+				//Tweet tweet = new Tweet();
+				myOutfile.write ("It works");
+				myOutfile.write(T.getPolarity() + ", " +T.getId() + ", " + T.getUser() + ", " + T.getTweet());
+				//myOutfile.write("\n");
+			}
 			myOutfile.flush();
 			myOutfile.close();
 		}
