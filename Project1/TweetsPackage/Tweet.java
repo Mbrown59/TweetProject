@@ -67,7 +67,14 @@ public class Tweet {
 	
 	public String toString()
 	{
-		return tweet;
+		return polarity + ", " + id + ", " + user + ", " + tweet;
+	}
+	
+	
+	public boolean equals(Object rhs)
+	{
+		Tweet rhsT = (Tweet)rhs;
+		return rhsT.getId().equals(this.getId());
 	}
 
 }

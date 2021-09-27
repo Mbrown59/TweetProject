@@ -11,11 +11,14 @@ import java.util.*;
 public class Twitter
 {
 	ArrayList<Tweet> collection = new ArrayList<>(); 
-	Map<String, String> map = new HashMap<String, String>();
+	//ArrayList<Tweet> collection2 = new ArrayList<>();
+	Map<String, String> map = new HashMap<String,String>();
 	Map<String, String> map1 = new HashMap<String, String>();
 	private String fileName;
+	private Scanner scan;
 	//private String className;
 	private Tweet T;
+	//private Tweet newT;
 
 	public Twitter()
 	{
@@ -28,15 +31,18 @@ public class Twitter
 		fileName = fn;
 		//className = cn;
 		collection = new ArrayList<>();
+		//collection = new ArrayList<>();
 		map = new HashMap<String, String>();
 		map1 = new HashMap<String, String>();
+		scan = new Scanner(System.in);
 		T = new Tweet();
+		//newT = new Tweet();
 
 	}
 	
 	public void retrieveTweetById()
 	{
-		Scanner scan = new Scanner(System.in);
+		//Scanner scan = new Scanner(System.in);
 		System.out.println("What is the id of tweet you would like to retrieve?");
 		String i = scan.nextLine();
 		
@@ -53,7 +59,7 @@ public class Twitter
 	
 	public void retrieveIdsByUser()
 	{
-		Scanner scan = new Scanner(System.in);
+		//Scanner scan = new Scanner(System.in);
 		System.out.println("Do you want to retrieve all of a user's Ids? (Yes or No)");
 		String B = scan.nextLine();
 		
@@ -76,7 +82,7 @@ public class Twitter
 	
 	public void retrieveAllIds()
 	{
-		Scanner scan = new Scanner(System.in);
+		//Scanner scan = new Scanner(System.in);
 		System.out.println("Would you like to see all of the Ids? (Yes or No)");
 		String A = scan.nextLine();
 		
@@ -111,7 +117,7 @@ public class Twitter
 				String user = fullTweet[fullTweet.length - 2];
 				String tweet = fullTweet[fullTweet.length - 1];
 				
-				//Tweet T = new Tweet();
+				Tweet T = new Tweet();
 
 				T.setPolarity(polarity);
 				T.setId(id);
@@ -155,12 +161,19 @@ public class Twitter
 			FileWriter fw = new FileWriter(fn);
 			BufferedWriter myOutfile = new BufferedWriter(fw);
 			//myOutfile.write("It works");
+			//myOutfile.write();
+			
+			///use iterator
+			
 			//for(Tweet T : collection)
 			{
 				//System.out.println("it works");
-				//Tweet tweet = new Tweet();
-				myOutfile.write ("It works");
-				myOutfile.write(T.getPolarity() + ", " +T.getId() + ", " + T.getUser() + ", " + T.getTweet());
+				//Tweet T = new Tweet();
+				//myOutfile.write ("It works");
+				//myOutfile.write(collection2);
+				addTweet();
+				myOutfile.write(T.getPolarity() + ", " + T.getId() + ", " + T.getUser() + ", " + T.getTweet());
+				//myOutfile.write( T.getPolarity() + ", " + T.getId() + ", " + T.getUser() + ", " + T.getTweet());
 				//myOutfile.write("\n");
 			}
 			myOutfile.flush();
@@ -173,6 +186,42 @@ public class Twitter
 		}
 	}
 
+	public void addTweet()
+	{
+		System.out.println("Would you like to add a tweet? (yes or no)");
+		Scanner scan = new Scanner(System.in);
+		String N = scan.nextLine();
+		//Tweet newT = new Tweet();
+		
+		if(N.equalsIgnoreCase("yes"))
+		{
+			//System.out.println("What is the polarity?");
+			//String POLARITY = scan.nextLine();
+			T.setPolarity(prediction());
+			
+			System.out.println("What is the ID?");
+			String ID = scan.nextLine();
+			T.setId(ID);
+			
+			System.out.println("What is the user name?");
+			String UNAME = scan.nextLine();
+			T.setId(UNAME);
+			
+			System.out.println("What is the tweet?");
+			String TWEET = scan.nextLine();
+			T.setTweet(TWEET);
+			
+			collection.add(T);
+			//System.out.println(newT.getUser());
+			//doWrite(fn);
+			//System.out.println(collection2);
+		}
+	}
+	
+	public String prediction()
+	{
+		return ("4");
+	}
 
 
 }
