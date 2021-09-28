@@ -15,14 +15,21 @@ public class Twitter
 	Map<String, String> map = new HashMap<String,String>();
 	Map<String, String> map1 = new HashMap<String, String>();
 	private String fileName;
+	//private String ID;
+	//private String TWEET;
+	//private String UNAME;
 	private Scanner scan;
 	//private String className;
-	private Tweet T;
+	private Tweet T; 
 	//private Tweet newT;
 
 	public Twitter()
 	{
 		fileName = null;
+		//ID = null;
+		//TWEET = null;
+		//UNAME = null;
+		
 		//className = null;
 	}
 
@@ -40,11 +47,11 @@ public class Twitter
 
 	}
 	
-	public void retrieveTweetById()
+	public void retrieveTweetById(String i)
 	{
 		//Scanner scan = new Scanner(System.in);
-		System.out.println("What is the id of tweet you would like to retrieve?");
-		String i = scan.nextLine();
+		//System.out.println("What is the id of tweet you would like to retrieve?");
+		//String i = scan.nextLine();
 		
 		for(Tweet T : collection)
 		{
@@ -57,20 +64,20 @@ public class Twitter
 		System.out.println("\t" + map);
 	}
 	
-	public void retrieveIdsByUser()
+	public void retrieveIdsByUser(String u)
 	{
 		//Scanner scan = new Scanner(System.in);
-		System.out.println("Do you want to retrieve all of a user's Ids? (Yes or No)");
-		String B = scan.nextLine();
+		//System.out.println("Do you want to retrieve all of a user's Ids? (Yes or No)");
+		//String B = scan.nextLine();
 		
-		if(B.equalsIgnoreCase("yes"))
+		//if(B.equalsIgnoreCase("yes"))
 		{
-			System.out.println("What is the user name?");
-			String U = scan.nextLine();
+			//System.out.println("What is the user name?");
+			//String U = scan.nextLine();
 			
 			for(Tweet T : collection)
 			{
-				if(T.getUser().equalsIgnoreCase(U))
+				if(T.getUser().equalsIgnoreCase(u))
 				{
 					map1.put(T.getUser(), T.getId());
 					System.out.println("\t" + map1);
@@ -83,17 +90,16 @@ public class Twitter
 	public void retrieveAllIds()
 	{
 		//Scanner scan = new Scanner(System.in);
-		System.out.println("Would you like to see all of the Ids? (Yes or No)");
-		String A = scan.nextLine();
+		//System.out.println("Would you like to see all of the Ids? (Yes or No)");
+		//String A = scan.nextLine();
 		
-		if(A.equalsIgnoreCase("Yes"))
-		{
-			for(Tweet T : collection)
+		//if(A.equalsItgnoreCase("Yes"))
+			for(Tweet T : collection  )
 			{
 				System.out.println(T.getId());
 			}
-		}
 	}
+
 	
 
 		
@@ -165,17 +171,16 @@ public class Twitter
 			
 			///use iterator
 			
-			//for(Tweet T : collection)
+		
+		
+				//addTweet(ID, UNAME, TWEET);
+			//myOutfile.write("hello");
+			while(collection.iterator().hasNext())
 			{
-				//System.out.println("it works");
-				//Tweet T = new Tweet();
-				//myOutfile.write ("It works");
-				//myOutfile.write(collection2);
-				addTweet();
 				myOutfile.write(T.getPolarity() + ", " + T.getId() + ", " + T.getUser() + ", " + T.getTweet());
-				//myOutfile.write( T.getPolarity() + ", " + T.getId() + ", " + T.getUser() + ", " + T.getTweet());
-				//myOutfile.write("\n");
+
 			}
+			
 			myOutfile.flush();
 			myOutfile.close();
 		}
@@ -186,32 +191,35 @@ public class Twitter
 		}
 	}
 
-	public void addTweet()
+	public void addTweet(String i, String u, String t)
 	{
-		System.out.println("Would you like to add a tweet? (yes or no)");
-		Scanner scan = new Scanner(System.in);
-		String N = scan.nextLine();
-		//Tweet newT = new Tweet();
 		
-		if(N.equalsIgnoreCase("yes"))
 		{
 			//System.out.println("What is the polarity?");
 			//String POLARITY = scan.nextLine();
 			T.setPolarity(prediction());
 			
-			System.out.println("What is the ID?");
-			String ID = scan.nextLine();
-			T.setId(ID);
+			//System.out.println("What is the ID?");
+			//String ID = scan.nextLine();
+			T.setId(i);
 			
-			System.out.println("What is the user name?");
-			String UNAME = scan.nextLine();
-			T.setId(UNAME);
+			//System.out.println("What is the user name?");
+			//String UNAME = scan.nextLine();
+			T.setUser(u);
 			
-			System.out.println("What is the tweet?");
-			String TWEET = scan.nextLine();
-			T.setTweet(TWEET);
+			//System.out.println("What is the tweet?");
+			//String TWEET = scan.nextLine();
+			T.setTweet(t);
+			
+			//T.setPolarity(prediction());
+			
 			
 			collection.add(T);
+			
+			System.out.println("\n" + T.toString());
+			
+			//return T;
+			
 			//System.out.println(newT.getUser());
 			//doWrite(fn);
 			//System.out.println(collection2);
@@ -223,5 +231,15 @@ public class Twitter
 		return ("4");
 	}
 
+	public void removeTweet(String i)
+	{
+		//System.out.println("What is the id of the tweet you would like to remove?");
+		//String id = scan.nextLine();
+		
+		if(T.getId().equalsIgnoreCase(i))
+		{
+			collection.remove(T);
+		}
+	}
 
 }

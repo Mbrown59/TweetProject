@@ -10,11 +10,22 @@ public class Main {
 		Twitter t2 = new Twitter("./TweetsPackage/Tweets.txt");
 
 		t1.readFile();
-		t1.retrieveTweetById();
-		t1.retrieveAllIds();
-		t1.retrieveIdsByUser();
 		
-		//t1.addTweet();
+		System.out.println("Retrieving tweet by id");
+		t1.retrieveTweetById("446");
+		
+		System.out.println("Printing all ids");
+		t1.retrieveAllIds();
+		
+		System.out.println("Retrieving all ids from a single user");
+		t1.retrieveIdsByUser("ronjo");
+		
+		//System.out.println("Removing tweet from collection");
+		//t1.removeTweet("3");
+		
+		t1.addTweet("123456789", "MiaB", "Adding Tweet!!");
+		
+		
 		t1.doWrite("./TweetsPackage/dataWriteTest.txt");
 		t2.doWrite("TweetsPackage/dataWriteTest.txt");
 		
