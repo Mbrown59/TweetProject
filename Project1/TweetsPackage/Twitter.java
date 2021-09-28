@@ -174,7 +174,7 @@ public class Twitter
 		
 		
 				//addTweet(ID, UNAME, TWEET);
-			myOutfile.write("hello");
+			//myOutfile.write("hello");
 			for(Tweet T : collection)
 			{
 				myOutfile.write(T.getPolarity() + ", " + T.getId() + ", " + T.getUser() + ", " + T.getTweet() + "\n");
@@ -198,7 +198,7 @@ public class Twitter
 			Tweet newT = new Tweet();
 			//System.out.println("What is the polarity?");
 			//String POLARITY = scan.nextLine();
-			newT.setPolarity(prediction());
+			newT.setPolarity("4");
 			
 			//System.out.println("What is the ID?");
 			//String ID = scan.nextLine();
@@ -228,9 +228,26 @@ public class Twitter
 		}
 	}
 	
-	public String prediction()
+	public void prediction()
 	{
-		return ("4");
+		double count = 0;
+		double total = 0;
+		double average;
+		
+		for(Tweet T: collection)
+		{
+			total++;
+			if(T.getPolarity().equals("4"))
+			{
+				count++;
+			}
+		}
+		
+		average = (count / total) * 100;
+		System.out.println("Total Tweets: " + total);
+		System.out.println("Total correct predicted tweets: " + count);
+		System.out.println("Average: " + average + "%");
+		
 	}
 
 	public void removeTweet(String i)
@@ -238,10 +255,12 @@ public class Twitter
 		//System.out.println("What is the id of the tweet you would like to remove?");
 		//String id = scan.nextLine();
 		
-		if(T.getId().equalsIgnoreCase(i))
-		{
-			collection.remove(T);
-		}
+			if(T.getId().equalsIgnoreCase(i))
+			{
+				collection.remove(T);
+			}
+		
+		
 	}
 
 }
