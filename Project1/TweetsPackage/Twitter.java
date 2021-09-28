@@ -174,10 +174,10 @@ public class Twitter
 		
 		
 				//addTweet(ID, UNAME, TWEET);
-			//myOutfile.write("hello");
-			while(collection.iterator().hasNext())
+			myOutfile.write("hello");
+			for(Tweet T : collection)
 			{
-				myOutfile.write(T.getPolarity() + ", " + T.getId() + ", " + T.getUser() + ", " + T.getTweet());
+				myOutfile.write(T.getPolarity() + ", " + T.getId() + ", " + T.getUser() + ", " + T.getTweet() + "\n");
 
 			}
 			
@@ -191,32 +191,34 @@ public class Twitter
 		}
 	}
 
-	public void addTweet(String i, String u, String t)
+	public void addTweet(String i, String u, String t, String fn)
 	{
 		
 		{
+			Tweet newT = new Tweet();
 			//System.out.println("What is the polarity?");
 			//String POLARITY = scan.nextLine();
-			T.setPolarity(prediction());
+			newT.setPolarity(prediction());
 			
 			//System.out.println("What is the ID?");
 			//String ID = scan.nextLine();
-			T.setId(i);
+			newT.setId(i);
 			
 			//System.out.println("What is the user name?");
 			//String UNAME = scan.nextLine();
-			T.setUser(u);
+			newT.setUser(u);
 			
 			//System.out.println("What is the tweet?");
 			//String TWEET = scan.nextLine();
-			T.setTweet(t);
+			newT.setTweet(t);
 			
 			//T.setPolarity(prediction());
 			
 			
-			collection.add(T);
+			collection.add(newT);
+			doWrite(fn);
 			
-			System.out.println("\n" + T.toString());
+			System.out.println("\n" + newT.toString());
 			
 			//return T;
 			
